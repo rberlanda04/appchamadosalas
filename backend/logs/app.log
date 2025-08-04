@@ -23,3 +23,5 @@
 2025-08-04T16:28:44.288Z [INFO] Sala criada - {"id":5,"nome":"sala 11"}
 2025-08-04T16:28:44.349Z [INFO] Salas listadas - {"count":5}
 [2025-08-04T16:28:51.342Z] INFO: Chamados listados {"count":0}
+2025-08-04T16:51:45.626Z [INFO] Salas listadas - {"count":5}
+2025-08-04T16:53:04.675Z [INFO] Salas listadas - {"count":5}

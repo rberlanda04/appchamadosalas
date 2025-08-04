@@ -62,7 +62,11 @@ const ChamadoDetails = () => {
       setObservacoes(data.observacoes || '');
     } catch (err) {
       console.error('Erro ao buscar detalhes do chamado:', err);
-      setError('Não foi possível carregar os detalhes do chamado. Tente novamente.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(String(err.response.data.error));
+      } else {
+        setError('Não foi possível carregar os detalhes do chamado. Tente novamente.');
+      }
     } finally {
       setLoading(false);
     }
@@ -82,7 +86,11 @@ const ChamadoDetails = () => {
       fetchChamadoDetails();
     } catch (err) {
       console.error('Erro ao atualizar chamado:', err);
-      setError('Não foi possível atualizar o chamado. Tente novamente.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(String(err.response.data.error));
+      } else {
+        setError('Não foi possível atualizar o chamado. Tente novamente.');
+      }
     } finally {
       setSaving(false);
     }
@@ -98,7 +106,11 @@ const ChamadoDetails = () => {
       navigate('/');
     } catch (err) {
       console.error('Erro ao excluir chamado:', err);
-      setError('Não foi possível excluir o chamado. Tente novamente.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(String(err.response.data.error));
+      } else {
+        setError('Não foi possível excluir o chamado. Tente novamente.');
+      }
       setSaving(false);
       setOpenDeleteDialog(false);
     }

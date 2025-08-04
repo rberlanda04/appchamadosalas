@@ -61,7 +61,11 @@ const SalasList = () => {
       setSalas(data);
     } catch (err) {
       console.error('Erro ao buscar salas:', err);
-      setError('Não foi possível carregar as salas. Tente novamente.');
+      if (err.response && err.response.data && err.response.data.error) {
+         setError(String(err.response.data.error));
+       } else {
+        setError('Não foi possível carregar as salas. Tente novamente.');
+      }
     } finally {
       setLoading(false);
     }
@@ -131,7 +135,7 @@ const SalasList = () => {
     } catch (err) {
       console.error('Erro ao salvar sala:', err);
       if (err.response && err.response.data && err.response.data.error) {
-        setError(err.response.data.error);
+        setError(String(err.response.data.error));
       } else {
         setError('Não foi possível salvar a sala. Tente novamente.');
       }
@@ -155,7 +159,7 @@ const SalasList = () => {
     } catch (err) {
       console.error('Erro ao excluir sala:', err);
       if (err.response && err.response.data && err.response.data.error) {
-        setError(err.response.data.error);
+        setError(String(err.response.data.error));
       } else {
         setError('Não foi possível excluir a sala. Tente novamente.');
       }

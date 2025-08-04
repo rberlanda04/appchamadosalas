@@ -74,7 +74,11 @@ const SalaDetails = () => {
       });
     } catch (err) {
       console.error('Erro ao buscar detalhes da sala:', err);
-      setError('Não foi possível carregar os detalhes da sala. Tente novamente.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setError(String(err.response.data.error));
+      } else {
+        setError('Não foi possível carregar os detalhes da sala. Tente novamente.');
+      }
     } finally {
       setLoading(false);
     }
@@ -92,7 +96,11 @@ const SalaDetails = () => {
       setChamados(salaChamados);
     } catch (err) {
       console.error('Erro ao buscar chamados da sala:', err);
-      setChamadosError('Não foi possível carregar os chamados desta sala. Tente novamente.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setChamadosError(String(err.response.data.error));
+      } else {
+        setChamadosError('Não foi possível carregar os chamados da sala. Tente novamente.');
+      }
     } finally {
       setChamadosLoading(false);
     }
@@ -125,7 +133,7 @@ const SalaDetails = () => {
     } catch (err) {
       console.error('Erro ao atualizar sala:', err);
       if (err.response && err.response.data && err.response.data.error) {
-        setError(err.response.data.error);
+        setError(String(err.response.data.error));
       } else {
         setError('Não foi possível atualizar a sala. Tente novamente.');
       }
@@ -146,7 +154,7 @@ const SalaDetails = () => {
     } catch (err) {
       console.error('Erro ao excluir sala:', err);
       if (err.response && err.response.data && err.response.data.error) {
-        setError(err.response.data.error);
+        setError(String(err.response.data.error));
       } else {
         setError('Não foi possível excluir a sala. Tente novamente.');
       }
@@ -163,7 +171,11 @@ const SalaDetails = () => {
       fetchChamados();
     } catch (err) {
       console.error('Erro ao atualizar status do chamado:', err);
-      setChamadosError('Não foi possível atualizar o status do chamado. Tente novamente.');
+      if (err.response && err.response.data && err.response.data.error) {
+        setChamadosError(String(err.response.data.error));
+      } else {
+        setChamadosError('Não foi possível atualizar o status do chamado. Tente novamente.');
+      }
     }
   };
 
