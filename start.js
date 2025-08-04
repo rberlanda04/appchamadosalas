@@ -31,21 +31,18 @@ function runCommand(command, args, cwd, label) {
     });
 }
 
-// Função para verificar se o banco existe
-function checkDatabase() {
-    const dbPath = path.join(__dirname, 'database', 'chamados.db');
-    return fs.existsSync(dbPath);
+// Função para verificar sistema de dados
+function checkDataSystem() {
+    // Sistema baseado em arquivos - sempre disponível
+    return true;
 }
 
 // Função principal
 async function startApplication() {
     try {
-        // 1. Verificar e inicializar banco de dados
-        if (!checkDatabase()) {
-            console.log('\n🗄️  Banco de dados não encontrado. Inicializando...');
-            await runCommand('node', ['backend/initDb.js'], __dirname, 'Inicialização do banco de dados');
-        } else {
-            console.log('\n✅ Banco de dados já existe!');
+        // 1. Verificar sistema de dados
+        if (checkDataSystem()) {
+            console.log('\n📁 Sistema de dados baseado em arquivos - pronto!');
         }
 
         // 2. Instalar dependências do backend (se necessário)

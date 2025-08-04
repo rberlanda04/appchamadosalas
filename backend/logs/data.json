@@ -1,0 +1,60 @@
+{
+  "chamados": [],
+  "salas": [
+    {
+      "id": 1,
+      "nome": "Sala 101",
+      "descricao": "Sala de aula do primeiro andar",
+      "ativa": true
+    },
+    {
+      "id": 2,
+      "nome": "Sala 102",
+      "descricao": "Sala de aula do primeiro andar",
+      "ativa": true
+    },
+    {
+      "id": 3,
+      "nome": "Sala 201",
+      "descricao": "Sala de aula do segundo andar",
+      "ativa": true
+    },
+    {
+      "id": 4,
+      "nome": "Sala 202",
+      "descricao": "Sala de aula do segundo andar",
+      "ativa": true
+    },
+    {
+      "id": 5,
+      "nome": "Laboratório de Informática",
+      "descricao": "Laboratório com computadores",
+      "ativa": true
+    }
+  ],
+  "status": [
+    {
+      "id": 1,
+      "nome": "Aberto",
+      "descricao": "Chamado recém criado",
+      "ativo": true
+    },
+    {
+      "id": 2,
+      "nome": "Em Andamento",
+      "descricao": "Chamado sendo atendido",
+      "ativo": true
+    },
+    {
+      "id": 3,
+      "nome": "Finalizado",
+      "descricao": "Chamado resolvido",
+      "ativo": true
+    }
+  ],
+  "counters": {
+    "chamados": 1,
+    "salas": 6,
+    "status": 4
+  }
+}

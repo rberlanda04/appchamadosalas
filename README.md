@@ -7,14 +7,14 @@ Este aplicativo web permite gerenciar chamados de suporte técnico para salas de
 - Escaneamento de QR codes para abertura de chamados
 - Painel de controle para visualização e gerenciamento de chamados
 - Categorização de chamados: Aberto, Em Andamento, Finalizado
-- Registro de histórico de chamados em banco de dados SQLite
+- Registro de histórico de chamados em sistema de logs estruturados
 - Interface amigável e responsiva
 
 ## Estrutura do Projeto
 
 - `frontend/`: Contém os arquivos da interface do usuário
 - `backend/`: Contém a API e lógica de negócios
-- `database/`: Contém o banco de dados SQLite e scripts relacionados
+- `logs/`: Contém os arquivos de log estruturados do sistema
 
 ## Requisitos
 
@@ -32,8 +32,7 @@ cd backend
 # Instale as dependências
 npm install
 
-# Inicialize o banco de dados (se necessário)
-npm run init-db
+# O sistema de dados baseado em arquivos não requer inicialização
 ```
 
 ### Frontend
@@ -59,14 +58,14 @@ npm start
 ```
 
 Isso iniciará automaticamente:
-- ✅ Banco de dados SQLite
+- ✅ Sistema de dados baseado em arquivos
 - ✅ Servidor backend na porta 5001
 - ✅ Servidor frontend na porta 3000
 
 ### 📋 Comandos Disponíveis
 
 ```bash
-# Configuração inicial (instala dependências + inicializa banco)
+# Configuração inicial (instala dependências)
 npm run setup
 
 # Iniciar sistema completo
@@ -74,7 +73,7 @@ npm start
 # ou
 npm run dev
 
-# Apenas inicializar banco e verificar dependências
+# Apenas verificar dependências
 npm run init
 
 # Build para produção
@@ -124,7 +123,7 @@ Para fazer o deploy da aplicação no Vercel:
 4. **Configurações importantes:**
    - O frontend será servido na raiz do domínio
    - O backend estará disponível em `/api`
-   - O banco SQLite será criado automaticamente no primeiro acesso
+   - O sistema de logs será criado automaticamente no primeiro acesso
 
 ## Notas de Versão
 
@@ -137,5 +136,5 @@ Para fazer o deploy da aplicação no Vercel:
 
 - Frontend: React.js (v17), Material-UI
 - Backend: Node.js, Express
-- Banco de Dados: SQLite
+- Armazenamento: Sistema de logs estruturados em arquivos JSON
 - QR Code: react-qr-reader

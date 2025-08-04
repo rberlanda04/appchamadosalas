@@ -43,10 +43,8 @@ const SalasList = () => {
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [currentSala, setCurrentSala] = useState(null);
   const [formData, setFormData] = useState({
-    numero: '',
+    nome: '',
     descricao: '',
-    bloco: '',
-    andar: '',
   });
 
   // Busca as salas ao carregar a página
@@ -74,18 +72,14 @@ const SalasList = () => {
     if (sala) {
       setCurrentSala(sala);
       setFormData({
-        numero: sala.numero,
+        nome: sala.nome || '',
         descricao: sala.descricao || '',
-        bloco: sala.bloco || '',
-        andar: sala.andar || '',
       });
     } else {
       setCurrentSala(null);
       setFormData({
-        numero: '',
+        nome: '',
         descricao: '',
-        bloco: '',
-        andar: '',
       });
     }
     setOpenDialog(true);
@@ -114,8 +108,8 @@ const SalasList = () => {
 
   // Função para salvar uma sala (criar ou atualizar)
   const handleSaveSala = async () => {
-    if (!formData.numero) {
-      setError('O número da sala é obrigatório.');
+    if (!formData.nome) {
+      setError('O nome da sala é obrigatório.');
       return;
     }
 
@@ -223,10 +217,8 @@ const SalasList = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Número</TableCell>
+                <TableCell>Nome</TableCell>
                 <TableCell>Descrição</TableCell>
-                <TableCell>Bloco</TableCell>
-                <TableCell>Andar</TableCell>
                 <TableCell>Chamados Abertos</TableCell>
                 <TableCell align="center">QR Code</TableCell>
                 <TableCell align="right">Ações</TableCell>
@@ -235,10 +227,8 @@ const SalasList = () => {
             <TableBody>
               {salas.map((sala) => (
                 <TableRow key={sala.id}>
-                  <TableCell>{sala.numero}</TableCell>
+                  <TableCell>{sala.nome}</TableCell>
                   <TableCell>{sala.descricao || '-'}</TableCell>
-                  <TableCell>{sala.bloco || '-'}</TableCell>
-                  <TableCell>{sala.andar || '-'}</TableCell>
                   <TableCell>
                     {sala.chamados_abertos > 0 ? (
                       <Chip
@@ -312,39 +302,21 @@ const SalasList = () => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ mt: 1 }}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                name="numero"
-                label="Número da Sala *"
-                value={formData.numero}
+                name="nome"
+                label="Nome da Sala *"
+                value={formData.nome}
                 onChange={handleInputChange}
                 fullWidth
                 required
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
                 name="descricao"
                 label="Descrição"
                 value={formData.descricao}
-                onChange={handleInputChange}
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name="bloco"
-                label="Bloco"
-                value={formData.bloco}
-                onChange={handleInputChange}
-                fullWidth
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                name="andar"
-                label="Andar"
-                value={formData.andar}
                 onChange={handleInputChange}
                 fullWidth
               />
@@ -371,14 +343,14 @@ const SalasList = () => {
           {currentSala && (
             <Box sx={{ textAlign: 'center', p: 2 }}>
               <Typography variant="h6" gutterBottom>
-                Sala {currentSala.numero}
+                {currentSala.nome}
               </Typography>
               <Typography variant="body2" color="text.secondary" paragraph>
-                {currentSala.descricao} - Bloco {currentSala.bloco} - {currentSala.andar}
+                {currentSala.descricao}
               </Typography>
               <Box sx={{ my: 3, display: 'flex', justifyContent: 'center' }}>
                 <QRCodeSVG
-                  value={currentSala.numero}
+                  value={currentSala.nome}
                   size={200}
                   level="H"
                   includeMargin
@@ -403,7 +375,7 @@ const SalasList = () => {
         <DialogContent>
           {currentSala && (
             <Typography variant="body1">
-              Tem certeza que deseja excluir a sala {currentSala.numero}?
+              Tem certeza que deseja excluir a sala "{currentSala.nome}"?
               {currentSala.chamados_abertos > 0 && (
                 <Typography variant="body2" color="error" sx={{ mt: 1 }}>
                   Esta sala possui {currentSala.chamados_abertos} chamado(s) aberto(s).

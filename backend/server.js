@@ -1,54 +1,46 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+require('dotenv').config();
 
-// Inicializa o app Express
+// Importar configuração do sistema de dados
+const { initializeDataSystem } = require('./database');
+const { logger } = require('./logger');
+
+// Importar rotas
+const chamadosRoutes = require('./routes/chamados');
+const salasRoutes = require('./routes/salas');
+const statusRoutes = require('./routes/status');
+
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Conecta ao banco de dados SQLite
-const dbPath = path.resolve(__dirname, '../database/chamados.db');
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) {
-    console.error('Erro ao conectar ao banco de dados:', err.message);
-  } else {
-    console.log('Conectado ao banco de dados SQLite');
-  }
+// Inicializar sistema de dados
+initializeDataSystem().then(() => {
+  logger.info('🚀 Sistema de dados inicializado com sucesso!');
+}).catch(error => {
+  logger.error('❌ Erro ao inicializar sistema:', error.message);
 });
 
-// Importa as rotas
-const chamadosRoutes = require('./routes/chamados');
-const salasRoutes = require('./routes/salas');
+// Middleware
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Configura as rotas
-app.use('/api/chamados', chamadosRoutes(db));
-app.use('/api/salas', salasRoutes(db));
+// Usar as rotas
+app.use('/api/chamados', chamadosRoutes);
+app.use('/api/salas', salasRoutes);
+app.use('/api/status', statusRoutes);
 
 // Rota de teste para verificar se a API está funcionando
-app.get('/api/status', (req, res) => {
-  res.json({ status: 'API funcionando corretamente' });
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'API funcionando corretamente', timestamp: new Date().toISOString() });
 });
 
 // Inicia o servidor
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
 });
 
-// Encerra a conexão com o banco de dados quando o servidor é encerrado
-process.on('SIGINT', () => {
-  db.close((err) => {
-    if (err) {
-      console.error('Erro ao fechar o banco de dados:', err.message);
-    } else {
-      console.log('Conexão com o banco de dados fechada');
-    }
-    process.exit(0);
-  });
-});
+// Exportar apenas o app
+module.exports = { app };

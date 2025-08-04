@@ -1,0 +1,25 @@
+2025-08-04T16:16:35.081Z [INFO] Dados salvos com sucesso
+[2025-08-04T16:16:35.129Z] ERROR: ❌ Erro ao inicializar sistema: "logger.error is not a function"
+[2025-08-04T16:17:30.557Z] ERROR: ❌ Erro ao inicializar sistema: "logger.error is not a function"
+[2025-08-04T16:18:04.824Z] INFO: Inicializando sistema de dados... 
+[2025-08-04T16:18:04.846Z] INFO: Dados iniciais carregados {"chamados":0,"salas":3,"status":4}
+[2025-08-04T16:18:04.888Z] INFO: Sistema de dados inicializado com sucesso! 
+[2025-08-04T16:18:04.915Z] INFO: 🚀 Sistema de dados inicializado com sucesso! 
+[2025-08-04T16:18:23.793Z] INFO: Chamados listados {"count":0}
+2025-08-04T16:18:31.824Z [INFO] Salas listadas - {"count":3}
+[2025-08-04T16:18:40.788Z] INFO: Chamados listados {"count":0}
+[2025-08-04T16:20:04.058Z] INFO: Chamados listados {"count":0}
+2025-08-04T16:20:06.739Z [INFO] Salas listadas - {"count":3}
+[2025-08-04T16:22:31.205Z] INFO: SALA_CREATE: ID=4, Nome=Teste Sala, Ativa=true {"sala":{"id":4,"nome":"Teste Sala","descricao":"Sala de teste","ativa":true}}
+2025-08-04T16:22:31.213Z [INFO] Sala criada - {"id":4,"nome":"Teste Sala"}
+2025-08-04T16:24:41.869Z [INFO] Salas listadas - {"count":4}
+2025-08-04T16:24:41.879Z [INFO] Salas listadas - {"count":4}
+2025-08-04T16:24:45.630Z [INFO] Salas listadas - {"count":4}
+2025-08-04T16:24:45.638Z [INFO] Salas listadas - {"count":4}
+[2025-08-04T16:24:54.347Z] INFO: Chamados listados {"count":0}
+[2025-08-04T16:28:21.666Z] INFO: Chamados listados {"count":0}
+2025-08-04T16:28:24.103Z [INFO] Salas listadas - {"count":4}
+[2025-08-04T16:28:44.286Z] INFO: SALA_CREATE: ID=5, Nome=sala 11, Ativa=true {"sala":{"id":5,"nome":"sala 11","descricao":"central","ativa":true}}
+2025-08-04T16:28:44.288Z [INFO] Sala criada - {"id":5,"nome":"sala 11"}
+2025-08-04T16:28:44.349Z [INFO] Salas listadas - {"count":5}
+[2025-08-04T16:28:51.342Z] INFO: Chamados listados {"count":0}

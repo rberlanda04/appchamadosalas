@@ -4,34 +4,17 @@ const fs = require('fs');
 
 console.log('🚀 Iniciando Sistema Completo de Chamados...');
 
-// Função para verificar se o banco existe
-function checkDatabase() {
-    const dbPath = path.join(__dirname, 'database', 'chamados.db');
-    return fs.existsSync(dbPath);
+// Função para verificar sistema de dados
+function checkDataSystem() {
+    // Sistema baseado em arquivos - sempre disponível
+    return true;
 }
 
-// Função para inicializar banco de dados
-function initDatabase() {
-    return new Promise((resolve, reject) => {
-        console.log('\n🗄️  Inicializando banco de dados...');
-        const initProcess = spawn('node', ['backend/initDb.js'], {
-            cwd: __dirname,
-            stdio: 'inherit',
-            shell: true
-        });
-
-        initProcess.on('close', (code) => {
-            if (code === 0) {
-                console.log('✅ Banco de dados inicializado com sucesso!');
-                resolve();
-            } else {
-                reject(new Error(`Falha na inicialização do banco: código ${code}`));
-            }
-        });
-
-        initProcess.on('error', (err) => {
-            reject(err);
-        });
+// Função para inicializar sistema de dados
+function initDataSystem() {
+    return new Promise((resolve) => {
+        console.log('📁 Sistema de dados baseado em arquivos - pronto para uso');
+        resolve();
     });
 }
 
@@ -58,11 +41,11 @@ function startServer(name, command, args, cwd) {
 // Função principal
 async function startCompleteApplication() {
     try {
-        // 1. Verificar e inicializar banco de dados
-        if (!checkDatabase()) {
-            await initDatabase();
+        // 1. Verificar e inicializar sistema de dados
+        if (!checkDataSystem()) {
+            await initDataSystem();
         } else {
-            console.log('\n✅ Banco de dados já existe e está pronto!');
+            console.log('\n✅ Sistema de dados já existe e está pronto!');
         }
 
         // 2. Aguardar um momento para garantir que o banco está pronto
@@ -97,7 +80,7 @@ async function startCompleteApplication() {
         console.log('   📱 Frontend: http://localhost:3000');
         console.log('   🔧 Backend:  http://localhost:5001');
         console.log('\n📋 Status dos Serviços:');
-        console.log('   ✅ Banco de dados SQLite: Ativo');
+        console.log('   ✅ Sistema de dados baseado em arquivos: Ativo');
         console.log('   ✅ Servidor Backend: Rodando na porta 5001');
         console.log('   ✅ Servidor Frontend: Rodando na porta 3000');
         console.log('\n💡 Dicas:');
@@ -124,7 +107,7 @@ async function startCompleteApplication() {
     } catch (error) {
         console.error('\n❌ Erro durante a inicialização:', error.message);
         console.log('\n🔧 Tente executar manualmente:');
-        console.log('   1. node backend/initDb.js');
+        console.log('   1. Sistema de dados baseado em arquivos (sem inicialização necessária)');
         console.log('   2. cd backend && npm start');
         console.log('   3. cd frontend && npm start');
         process.exit(1);
