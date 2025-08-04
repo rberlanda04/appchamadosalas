@@ -46,3 +46,16 @@
 2025-08-04T17:12:10.547Z [INFO] Sala criada - {"id":4,"nome":"dfgdfg"}
 2025-08-04T17:12:10.596Z [INFO] Salas listadas - {"count":4}
 [2025-08-04T17:12:11.541Z] INFO: Chamados listados {"count":0}
+[2025-08-04T17:49:17.139Z] INFO: Inicializando sistema de dados... 
+[2025-08-04T17:49:17.143Z] INFO: Dados iniciais carregados {"chamados":0,"salas":3,"status":4}
+[2025-08-04T17:49:17.147Z] INFO: Sistema de dados inicializado com sucesso! 
+[2025-08-04T17:49:17.222Z] INFO: 🚀 Sistema de dados inicializado com sucesso! 
+[2025-08-04T17:50:17.818Z] INFO: Chamados listados {"count":0}
+[2025-08-04T17:52:48.477Z] INFO: Chamados listados {"count":0}
+[2025-08-04T17:52:52.641Z] INFO: Salas listadas {"count":3}
+[2025-08-04T17:53:00.260Z] INFO: SALA_CREATE: ID=4, Nome=df, Ativa=true {"sala":{"id":4,"nome":"df","descricao":"sdf","ativa":true}}
+[2025-08-04T17:53:00.264Z] INFO: Sala criada {"id":4,"nome":"df"}
+[2025-08-04T17:53:00.302Z] INFO: Salas listadas {"count":4}
+[2025-08-04T17:53:06.310Z] INFO: SALA_DELETE: ID=4, Nome=df, Ativa=true {"sala":{"id":4,"nome":"df","descricao":"sdf","ativa":true}}
+[2025-08-04T17:53:06.315Z] INFO: Sala excluída {"id":4}
+[2025-08-04T17:53:06.366Z] INFO: Salas listadas {"count":3}

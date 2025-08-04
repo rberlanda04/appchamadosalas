@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { dataManager } = require('../database');
-const logger = require('../config/logger');
+const { logger } = require('../logger');
 
 // Obter todas as salas com contagem de chamados abertos
 router.get('/', async (req, res) => {
@@ -25,11 +25,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Obter sala por ID
+// Obter uma sala específica
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const sala = dataManager.getSalaById(parseInt(id));
+    
+    // Validar ID da sala
+    const idNum = parseInt(id);
+    if (isNaN(idNum) || idNum < 1) {
+      return res.status(400).json({ error: 'ID da sala deve ser um número válido' });
+    }
+    
+    const sala = dataManager.getSalaById(idNum);
     
     if (!sala) {
       return res.status(404).json({ error: 'Sala não encontrada' });
@@ -40,10 +47,11 @@ router.get('/:id', async (req, res) => {
       nome: sala.nome,
       descricao: sala.descricao,
       ativa: sala.ativa,
+      qr_code: sala.qr_code || '',
       chamados_abertos: dataManager.getChamadosAbertosBySala(sala.id)
     };
     
-    logger.info('Sala consultada', { id: sala.id });
+    logger.info('Sala consultada', { id: sala.id, nome: sala.nome });
     res.json(salaComChamados);
   } catch (error) {
     logger.error('Erro ao buscar sala', { error: error.message, id: req.params.id });
@@ -51,12 +59,12 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Obter uma sala pelo número
-router.get('/numero/:numero', async (req, res) => {
+// Obter uma sala pelo nome (compatibilidade com QR Code)
+router.get('/nome/:nome', async (req, res) => {
   try {
-    const { numero } = req.params;
+    const { nome } = req.params;
     const salas = dataManager.getSalas();
-    const sala = salas.find(s => s.numero === numero);
+    const sala = salas.find(s => s.nome.toLowerCase() === nome.toLowerCase());
     
     if (!sala) {
       return res.status(404).json({ error: 'Sala não encontrada' });
@@ -64,16 +72,17 @@ router.get('/numero/:numero', async (req, res) => {
     
     const salaComChamados = {
       id: sala.id,
-      numero: sala.numero,
+      nome: sala.nome,
       descricao: sala.descricao,
+      ativa: sala.ativa,
       qr_code: sala.qr_code || '',
       chamados_abertos: dataManager.getChamadosAbertosBySala(sala.id)
     };
     
-    logger.info('Sala consultada por número', { numero: numero, id: sala.id });
+    logger.info('Sala consultada por nome', { nome: nome, id: sala.id });
     res.json(salaComChamados);
   } catch (error) {
-    logger.error('Erro ao buscar sala por número', { error: error.message, numero: req.params.numero });
+    logger.error('Erro ao buscar sala por nome', { error: error.message, nome: req.params.nome });
     res.status(500).json({ error: 'Erro interno do servidor' });
   }
 });
@@ -83,8 +92,19 @@ router.post('/', async (req, res) => {
   try {
     const { nome, descricao } = req.body;
     
-    if (!nome || !nome.trim()) {
+    // Validações básicas
+    if (!nome || typeof nome !== 'string' || !nome.trim()) {
       return res.status(400).json({ error: 'Nome da sala é obrigatório' });
+    }
+    
+    // Validar tamanho do nome
+    if (nome.trim().length < 2 || nome.trim().length > 100) {
+      return res.status(400).json({ error: 'Nome da sala deve ter entre 2 e 100 caracteres' });
+    }
+    
+    // Validar descrição se fornecida
+    if (descricao && (typeof descricao !== 'string' || descricao.trim().length > 500)) {
+      return res.status(400).json({ error: 'Descrição deve ter no máximo 500 caracteres' });
     }
     
     // Verificar se já existe uma sala com o mesmo nome
@@ -122,12 +142,29 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { nome, descricao, ativa } = req.body;
     
-    if (!nome || !nome.trim()) {
+    // Validar ID da sala
+    const idNum = parseInt(id);
+    if (isNaN(idNum) || idNum < 1) {
+      return res.status(400).json({ error: 'ID da sala deve ser um número válido' });
+    }
+    
+    // Validações básicas
+    if (!nome || typeof nome !== 'string' || !nome.trim()) {
       return res.status(400).json({ error: 'Nome da sala é obrigatório' });
     }
     
+    // Validar tamanho do nome
+    if (nome.trim().length < 2 || nome.trim().length > 100) {
+      return res.status(400).json({ error: 'Nome da sala deve ter entre 2 e 100 caracteres' });
+    }
+    
+    // Validar descrição se fornecida
+    if (descricao && (typeof descricao !== 'string' || descricao.trim().length > 500)) {
+      return res.status(400).json({ error: 'Descrição deve ter no máximo 500 caracteres' });
+    }
+    
     // Verificar se a sala existe
-    const salaExistente = dataManager.getSalaById(parseInt(id));
+    const salaExistente = dataManager.getSalaById(idNum);
     if (!salaExistente) {
       return res.status(404).json({ error: 'Sala não encontrada' });
     }
@@ -135,14 +172,14 @@ router.put('/:id', async (req, res) => {
     // Verificar se já existe outra sala com o mesmo nome
     const salas = dataManager.getSalas();
     const salaComMesmoNome = salas.find(s => 
-      s.nome.toLowerCase() === nome.trim().toLowerCase() && s.id !== parseInt(id)
+      s.nome.toLowerCase() === nome.trim().toLowerCase() && s.id !== idNum
     );
     
     if (salaComMesmoNome) {
       return res.status(400).json({ error: 'Já existe uma sala com este nome' });
     }
     
-    const salaAtualizada = dataManager.updateSala(parseInt(id), {
+    const salaAtualizada = dataManager.updateSala(idNum, {
       nome: nome.trim(),
       descricao: descricao ? descricao.trim() : salaExistente.descricao,
       ativa: ativa !== undefined ? ativa : salaExistente.ativa
@@ -170,17 +207,28 @@ router.put('/:id/qrcode', async (req, res) => {
     const { id } = req.params;
     const { qr_code } = req.body;
     
+    // Validar ID da sala
+    const idNum = parseInt(id);
+    if (isNaN(idNum) || idNum < 1) {
+      return res.status(400).json({ error: 'ID da sala deve ser um número válido' });
+    }
+    
+    // Validar QR Code se fornecido
+    if (qr_code && (typeof qr_code !== 'string' || qr_code.length > 1000)) {
+      return res.status(400).json({ error: 'QR Code deve ser uma string com no máximo 1000 caracteres' });
+    }
+    
     // Verificar se a sala existe
-    const salaExistente = dataManager.getSalaById(parseInt(id));
+    const salaExistente = dataManager.getSalaById(idNum);
     if (!salaExistente) {
       return res.status(404).json({ error: 'Sala não encontrada' });
     }
     
-    const salaAtualizada = dataManager.updateSala(parseInt(id), {
+    const salaAtualizada = dataManager.updateSala(idNum, {
       qr_code: qr_code || ''
     });
     
-    logger.info('QR Code atualizado', { id: parseInt(id), qr_code: qr_code });
+    logger.info('QR Code atualizado', { id: idNum, qr_code: qr_code });
     res.json({ message: 'QR Code atualizado com sucesso' });
   } catch (error) {
     logger.error('Erro ao atualizar QR Code', { error: error.message, id: req.params.id });
@@ -193,9 +241,21 @@ router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     
+    // Validar ID da sala
+    const idNum = parseInt(id);
+    if (isNaN(idNum) || idNum < 1) {
+      return res.status(400).json({ error: 'ID da sala deve ser um número válido' });
+    }
+    
+    // Verificar se a sala existe
+    const salaExistente = dataManager.getSalaById(idNum);
+    if (!salaExistente) {
+      return res.status(404).json({ error: 'Sala não encontrada' });
+    }
+    
     // Verifica se existem chamados associados a esta sala
-    const chamadosCount = dataManager.getChamadosAbertosBySala(parseInt(id));
-    const chamadosTotal = dataManager.getChamados().filter(c => c.sala_id === parseInt(id)).length;
+    const chamadosCount = dataManager.getChamadosAbertosBySala(idNum);
+    const chamadosTotal = dataManager.getChamados().filter(c => c.sala_id === idNum).length;
     
     if (chamadosTotal > 0) {
       return res.status(400).json({ 
@@ -204,13 +264,13 @@ router.delete('/:id', async (req, res) => {
       });
     }
     
-    const resultado = dataManager.deleteSala(parseInt(id));
+    const resultado = dataManager.deleteSala(idNum);
     
     if (!resultado) {
       return res.status(404).json({ error: 'Sala não encontrada' });
     }
     
-    logger.info('Sala excluída', { id: parseInt(id) });
+    logger.info('Sala excluída', { id: idNum });
     res.json({ message: 'Sala excluída com sucesso' });
   } catch (error) {
     logger.error('Erro ao excluir sala', { error: error.message, id: req.params.id });

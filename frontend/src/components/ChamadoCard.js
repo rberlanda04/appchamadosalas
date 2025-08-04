@@ -85,7 +85,7 @@ const ChamadoCard = ({ chamado, onStatusChange }) => {
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
           <MeetingRoomIcon fontSize="small" sx={{ mr: 1 }} />
           <Typography variant="body1">
-            Sala {chamado.sala_numero} - Bloco {chamado.bloco} - {chamado.andar}
+            {chamado.sala_nome || `Sala ${chamado.sala_id}`}
           </Typography>
         </Box>
 
@@ -100,7 +100,7 @@ const ChamadoCard = ({ chamado, onStatusChange }) => {
         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
           <AccessTimeIcon fontSize="small" sx={{ mr: 1 }} />
           <Typography variant="body2" color="text.secondary">
-            Aberto em: {formatDate(chamado.data_abertura)}
+            Aberto em: {formatDate(chamado.data_criacao)}
           </Typography>
         </Box>
 
