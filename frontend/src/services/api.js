@@ -1,8 +1,15 @@
 import axios from 'axios';
 
 // Configuração base do axios
+const getBaseURL = () => {
+  if (process.env.NODE_ENV === 'production') {
+    return '/api'; // Em produção, usa o mesmo domínio
+  }
+  return 'http://localhost:5001/api'; // Em desenvolvimento, usa localhost
+};
+
 const api = axios.create({
-  baseURL: 'http://localhost:5001/api',
+  baseURL: getBaseURL(),
   headers: {
     'Content-Type': 'application/json',
   },

@@ -72,6 +72,37 @@ npm start
 
 O aplicativo frontend estará disponível em `http://localhost:3000`.
 
+## Deploy no Vercel
+
+Para fazer o deploy da aplicação no Vercel:
+
+1. **Prepare o repositório Git:**
+   ```bash
+   git add .
+   git commit -m "Preparação para deploy no Vercel"
+   ```
+
+2. **Crie um repositório no GitHub:**
+   - Acesse [GitHub](https://github.com) e crie um novo repositório
+   - Adicione o remote ao seu projeto local:
+   ```bash
+   git remote add origin https://github.com/seu-usuario/seu-repositorio.git
+   git branch -M main
+   git push -u origin main
+   ```
+
+3. **Deploy no Vercel:**
+   - Acesse [Vercel](https://vercel.com)
+   - Conecte sua conta do GitHub
+   - Importe o repositório do projeto
+   - O Vercel detectará automaticamente a configuração através do arquivo `vercel.json`
+   - O deploy será feito automaticamente
+
+4. **Configurações importantes:**
+   - O frontend será servido na raiz do domínio
+   - O backend estará disponível em `/api`
+   - O banco SQLite será criado automaticamente no primeiro acesso
+
 ## Notas de Versão
 
 ### v1.0.0
