@@ -5,15 +5,10 @@
     "CI": "false",
     "GENERATE_SOURCEMAP": "false"
   },
-  "functions": {
-    "backend/server.js": {
-      "runtime": "@vercel/node@3.0.7"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/backend/server.js"
+      "destination": "/api/index.js"
     }
   ]
 }
