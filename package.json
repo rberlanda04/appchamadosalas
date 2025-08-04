@@ -1,24 +1,12 @@
 {
-  "name": "appchamados-sistema",
+  "name": "appchamados",
   "version": "1.0.0",
-  "description": "Sistema de Gerenciamento de Chamados para Salas de Aula",
+  "description": "Sistema de Gerenciamento de Chamados com QR Code",
+  "main": "backend/server.js",
   "scripts": {
-    "build": "cd frontend && npm install --legacy-peer-deps && npm run build",
-    "start": "node backend/server.js",
-    "dev": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
-    "install-all": "cd backend && npm install && cd ../frontend && npm install --legacy-peer-deps"
+    "build": "cd frontend && npm install && npm run build"
   },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rberlanda04/appchamadosalas.git"
-  },
-  "author": "Rogerio Henrique Berlanda",
-  "license": "MIT",
-  "devDependencies": {
-    "concurrently": "^7.6.0"
-  }
+  "keywords": ["chamados", "qr-code", "react", "node"],
+  "author": "Seu Nome",
+  "license": "MIT"
 }
