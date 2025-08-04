@@ -5,12 +5,16 @@
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build"
+        "distDir": "build",
+        "buildCommand": "npm run vercel-build"
       }
     },
     {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
+      "src": "backend/vercel-server.js",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
@@ -40,6 +44,15 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "CORS_ORIGIN": "https://appchamadosalas.vercel.app",
+    "RATE_LIMIT_MAX_REQUESTS": "200",
+    "RATE_LIMIT_MAX_API_REQUESTS": "100",
+    "LOG_LEVEL": "error"
+  },
+  "functions": {
+    "backend/vercel-server.js": {
+      "maxDuration": 30
+    }
   }
 }

@@ -59,3 +59,10 @@
 [2025-08-04T17:53:06.310Z] INFO: SALA_DELETE: ID=4, Nome=df, Ativa=true {"sala":{"id":4,"nome":"df","descricao":"sdf","ativa":true}}
 [2025-08-04T17:53:06.315Z] INFO: Sala excluída {"id":4}
 [2025-08-04T17:53:06.366Z] INFO: Salas listadas {"count":3}
+[2025-08-04T17:57:23.130Z] INFO: Chamados listados {"count":0}
+[2025-08-04T17:57:40.449Z] INFO: Chamados listados {"count":0}
+[2025-08-04T17:58:18.395Z] INFO: Salas listadas {"count":3}
+[2025-08-04T17:58:37.983Z] INFO: Chamados listados {"count":0}
+[2025-08-04T17:58:44.532Z] INFO: Chamados filtrados por status {"statusId":1,"count":0}
+[2025-08-04T17:58:46.173Z] INFO: Chamados filtrados por status {"statusId":2,"count":0}
+[2025-08-04T17:58:47.949Z] INFO: Chamados filtrados por status {"statusId":1,"count":0}
