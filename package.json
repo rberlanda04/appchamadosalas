@@ -1,12 +1,19 @@
 {
   "name": "appchamados",
   "version": "1.0.0",
-  "description": "Sistema de Gerenciamento de Chamados com QR Code",
-  "main": "backend/server.js",
+  "description": "Sistema de gerenciamento de chamados para salas de aula",
+  "main": "index.js",
   "scripts": {
-    "build": "cd frontend && npm install && npm run build"
+    "build": "cd frontend && npm install && npm run build",
+    "init": "node start.js",
+    "start": "node start-all.js",
+    "dev": "node start-all.js",
+    "setup": "npm install && cd backend && npm install && cd ../frontend && npm install && cd .. && node backend/initDb.js"
   },
-  "keywords": ["chamados", "qr-code", "react", "node"],
-  "author": "Seu Nome",
-  "license": "MIT"
+  "keywords": ["chamados", "qr-code", "salas", "react", "node"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2"
+  }
 }

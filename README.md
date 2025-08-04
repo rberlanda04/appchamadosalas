@@ -48,29 +48,52 @@ npm install
 
 ## Como Executar
 
-### Backend
+### 🚀 Inicialização Rápida (Recomendado)
 
 ```bash
-# Navegue até a pasta do backend
+# Configuração inicial completa (apenas na primeira vez)
+npm run setup
+
+# Iniciar sistema completo (banco + backend + frontend)
+npm start
+```
+
+Isso iniciará automaticamente:
+- ✅ Banco de dados SQLite
+- ✅ Servidor backend na porta 5001
+- ✅ Servidor frontend na porta 3000
+
+### 📋 Comandos Disponíveis
+
+```bash
+# Configuração inicial (instala dependências + inicializa banco)
+npm run setup
+
+# Iniciar sistema completo
+npm start
+# ou
+npm run dev
+
+# Apenas inicializar banco e verificar dependências
+npm run init
+
+# Build para produção
+npm run build
+```
+
+### 🔧 Execução Manual (Alternativa)
+
+#### Backend
+```bash
 cd backend
-
-# Inicie o servidor
 npm start
 ```
 
-O servidor backend estará rodando em `http://localhost:5000`.
-
-### Frontend
-
+#### Frontend
 ```bash
-# Navegue até a pasta do frontend
 cd frontend
-
-# Inicie o aplicativo
 npm start
 ```
-
-O aplicativo frontend estará disponível em `http://localhost:3000`.
 
 ## Deploy no Vercel
 
