@@ -96,3 +96,11 @@
 [2025-08-05T16:30:27.978Z] INFO: Chamados filtrados por status {"statusId":2,"count":0}
 [2025-08-05T16:30:31.312Z] INFO: Salas listadas {"count":3}
 [2025-08-05T16:30:42.816Z] INFO: Chamados listados {"count":0}
+[2025-08-05T17:49:34.641Z] INFO: Inicializando sistema de dados... 
+[2025-08-05T17:49:34.651Z] INFO: Dados iniciais carregados {"chamados":0,"salas":3,"status":4}
+[2025-08-05T17:49:34.655Z] INFO: Sistema de dados inicializado com sucesso! 
+[2025-08-05T17:49:34.813Z] INFO: 🚀 Sistema de dados inicializado com sucesso! 
+[2025-08-05T17:52:30.120Z] INFO: Inicializando sistema de dados... 
+[2025-08-05T17:52:30.128Z] INFO: Dados iniciais carregados {"chamados":0,"salas":3,"status":4}
+[2025-08-05T17:52:30.137Z] INFO: Sistema de dados inicializado com sucesso! 
+[2025-08-05T17:52:30.340Z] INFO: 🚀 Sistema de dados inicializado com sucesso! 
