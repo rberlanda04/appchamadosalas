@@ -66,3 +66,33 @@
 [2025-08-04T17:58:44.532Z] INFO: Chamados filtrados por status {"statusId":1,"count":0}
 [2025-08-04T17:58:46.173Z] INFO: Chamados filtrados por status {"statusId":2,"count":0}
 [2025-08-04T17:58:47.949Z] INFO: Chamados filtrados por status {"statusId":1,"count":0}
+[2025-08-04T18:15:57.519Z] INFO: Chamados listados {"count":0}
+[2025-08-04T20:37:56.647Z] INFO: Chamados listados {"count":0}
+[2025-08-04T20:38:02.729Z] INFO: Salas listadas {"count":3}
+[2025-08-04T20:38:09.242Z] INFO: Chamados listados {"count":0}
+[2025-08-04T20:38:12.434Z] INFO: Chamados filtrados por status {"statusId":1,"count":0}
+[2025-08-04T20:38:13.772Z] INFO: Chamados filtrados por status {"statusId":2,"count":0}
+[2025-08-04T20:38:14.908Z] INFO: Chamados filtrados por status {"statusId":3,"count":0}
+[2025-08-04T20:38:19.293Z] INFO: Salas listadas {"count":3}
+[2025-08-04T20:52:06.208Z] INFO: Chamados listados {"count":0}
+[2025-08-05T14:20:02.425Z] INFO: Inicializando sistema de dados... 
+[2025-08-05T14:20:02.430Z] INFO: Dados iniciais carregados {"chamados":0,"salas":3,"status":4}
+[2025-08-05T14:20:02.434Z] INFO: Sistema de dados inicializado com sucesso! 
+[2025-08-05T14:20:02.502Z] INFO: 🚀 Sistema de dados inicializado com sucesso! 
+[2025-08-05T14:22:27.827Z] INFO: Chamados listados {"count":0}
+[2025-08-05T14:22:50.287Z] INFO: Salas listadas {"count":3}
+[2025-08-05T14:23:02.893Z] INFO: SALA_CREATE: ID=4, Nome=sala 11, Ativa=true {"sala":{"id":4,"nome":"sala 11","descricao":"sadasd","ativa":true}}
+[2025-08-05T14:23:02.897Z] INFO: Sala criada {"id":4,"nome":"sala 11"}
+[2025-08-05T14:23:02.935Z] INFO: Salas listadas {"count":4}
+[2025-08-05T14:24:08.932Z] ERROR: Erro capturado: {"message":"Rota não encontrada: GET /api/salas/numero/sala%2011","stack":"Error: Rota não encontrada: GET /api/salas/numero/sala%2011\n    at notFoundHandler (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\middleware\\errorHandler.js:69:17)\n    at Layer.handle [as handle_request] (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at trim_prefix (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:328:13)\n    at C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:286:9\n    at Function.process_params (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:646:15\n    at next (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:265:14)\n    at Function.handle (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (C:\\Users\\rogerio.henrique\\OneDrive - MARISTA BRASIL\\Documentos\\appchamados\\backend\\node_modules\\express\\lib\\router\\index.js:47:12)","url":"/api/salas/numero/sala%2011","method":"GET","ip":"::1","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"}
+[2025-08-05T14:24:24.279Z] INFO: Chamados listados {"count":0}
+[2025-08-05T16:24:27.676Z] INFO: Inicializando sistema de dados... 
+[2025-08-05T16:24:27.681Z] INFO: Dados iniciais carregados {"chamados":0,"salas":3,"status":4}
+[2025-08-05T16:24:27.684Z] INFO: Sistema de dados inicializado com sucesso! 
+[2025-08-05T16:24:27.750Z] INFO: 🚀 Sistema de dados inicializado com sucesso! 
+[2025-08-05T16:27:03.634Z] INFO: Chamados listados {"count":0}
+[2025-08-05T16:30:24.393Z] INFO: Chamados listados {"count":0}
+[2025-08-05T16:30:26.937Z] INFO: Chamados filtrados por status {"statusId":1,"count":0}
+[2025-08-05T16:30:27.978Z] INFO: Chamados filtrados por status {"statusId":2,"count":0}
+[2025-08-05T16:30:31.312Z] INFO: Salas listadas {"count":3}
+[2025-08-05T16:30:42.816Z] INFO: Chamados listados {"count":0}
