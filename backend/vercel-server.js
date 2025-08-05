@@ -1,8 +1,17 @@
 const express = require('express');
 const cors = require('cors');
 
-// Importar e validar configurações
-const { config, isProduction } = require('./config/environment');
+// Configuração simplificada para Vercel
+const isProduction = () => process.env.NODE_ENV === 'production';
+const config = {
+  app: {
+    name: 'App Chamados',
+    version: '1.0.0'
+  },
+  server: {
+    nodeEnv: process.env.NODE_ENV || 'production'
+  }
+};
 
 // Importar configuração do sistema de dados
 const { initializeDataSystem } = require('./vercel-database');
