@@ -1,5 +1,5 @@
 // Função serverless básica para health check
-export default function handler(req, res) {
+module.exports = (req, res) => {
   // Log para verificar se a função está sendo executada
   console.log('Health check executado:', new Date().toISOString());
   console.log('Método:', req.method);

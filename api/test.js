@@ -1,5 +1,5 @@
 // Função serverless para teste de logs
-export default function handler(req, res) {
+module.exports = (req, res) => {
   // Logs detalhados para teste
   console.log('=== TESTE DE LOGS NO VERCEL ===');
   console.log('Timestamp:', new Date().toISOString());
